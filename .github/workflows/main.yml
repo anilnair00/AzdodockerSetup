@@ -48,9 +48,9 @@ jobs:
 
       - name: Log in to Azure Container Registry
         run: |
-         az acr login --name mytestreg
+         az acr login --name testreg001
         
       - name: Build and Push Docker image
         run: |
-         docker build . -t mytestreg.azurecr.io/dockerkubernetes:new
-         docker push mytestreg.azurecr.io/dockerkubernetes:new
+         docker build . -t testreg001.azurecr.io/dockerkubernetes:new
+         docker push testreg001.azurecr.io/dockerkubernetes:new
