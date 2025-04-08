@@ -1,0 +1,56 @@
+name: Servercore Container Build and Push
+
+on:
+  push:
+       branches: ['main']
+    # tags:
+    #   - v1.*
+    
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      RUNNER_VERSION: v2.318.0
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      # - name: Log in to Azure
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - uses: azure/login@v1
+        with:
+          client-id: 084f318f-40aa-4d40-93ea-5ed3472b66bc
+          tenant-id: abec7981-3822-4685-98b0-533aca20c2ed
+          subscription-id: ee902f6d-01a9-4a32-8c5f-af9403e6c766
+
+      # - name: Azure Container Registry Login run
+      #   uses: Azure/docker-login@v1
+      #   with:
+      #   # Container registry username
+      #     username:  ${{ secrets.DOCKER_USERNAME }}
+      #   # Container registry password
+      #     password:  ${{ secrets.DOCKER_PASSWORD }}
+      #   # Container registry server url
+      #     login-server: ${{ secrets.ACR_NAME }}
+          
+      # - name: Azure Container Registry Login
+      #   run: az acr login --name ${{ secrets.ACR_NAME }}
+
+      - name: Log in to Azure Container Registry
+        run: |
+         az acr login --name mytestreg
+        
+      - name: Build and Push Docker image
+        run: |
+         docker build . -t mytestreg.azurecr.io/dockerkubernetes:new
+         docker push mytestreg.azurecr.io/dockerkubernetes:new
