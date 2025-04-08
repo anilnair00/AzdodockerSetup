@@ -4,7 +4,9 @@ ENV TARGETARCH="linux-x64"
 
 RUN apt update && \
   apt upgrade -y && \
+  apt-get install -y dotnet-sdk-8.0 && \
   apt install -y curl git jq libicu70
+  
 
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
