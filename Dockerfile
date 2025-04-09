@@ -7,8 +7,7 @@ RUN apt update && \
   apt-get install -y dotnet-sdk-8.0 && \
   apt-get install -y aspnetcore-runtime-8.0 && \
   apt-get install -y wget unzip && \
-   apt-get install -y msodbcsql18 && \
-   apt-get install -y mssql-tools && \
+  apt-get install -y mssql-tools && \
   apt install -y curl git jq libicu70
 
 ############################################################################################
