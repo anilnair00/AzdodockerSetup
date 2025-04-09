@@ -7,6 +7,14 @@ RUN apt update && \
   apt-get install -y dotnet-sdk-8.0 && \
   apt-get install -y aspnetcore-runtime-8.0 && \
   apt install -y curl git jq libicu70
+
+# Install dependencies
+RUN apt-get update && apt-get install -y wget unzip
+
+# Download and install SQLPackage
+RUN wget https://download.microsoft.com/download/e/6/1/e61b0e7b-2c4d-4c4b-8e5e-1b3b9d7d5c1b/sqlpackage-linux-x64.zip \
+    && unzip sqlpackage-linux-x64.zip -d /usr/local/bin \
+    && rm sqlpackage-linux-x64.zip
   
 
 # Install Azure CLI
