@@ -7,15 +7,23 @@ RUN apt update && \
   apt-get install -y dotnet-sdk-8.0 && \
   apt-get install -y aspnetcore-runtime-8.0 && \
   apt-get install -y wget unzip && \
+          msodbcsql18 \
+        mssql-tools \
   apt install -y curl git jq libicu70
 
-
+############################################################################################
 # Download and install SQLPackage
-RUN wget https://download.microsoft.com/download/e/6/1/e61b0e7b-2c4d-4c4b-8e5e-1b3b9d7d5c1b/sqlpackage-linux-x64.zip && \
-    unzip sqlpackage-linux-x64.zip -d /usr/local/bin && \
-    rm sqlpackage-linux-x64.zip
+RUN wget -O sqlpackage.zip https://aka.ms/sqlpackage-linux \
+    && unzip sqlpackage.zip -d /opt/sqlpackage \
+    && chmod +x /opt/sqlpackage/sqlpackage \
+    && rm /sqlpackage.zip
+RUN wget "http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl3_3.1.5-1_amd64.deb" \
+    && dpkg -i libssl3_3.1.5-1_amd64.deb \
+    && rm libssl3_3.1.5-1_amd64.deb
+#USER mssql
+ENV PATH=$PATH:/opt/mssql-tools/bin:/opt/sqlpackage
   
-
+##################################################################################################
 # Install Azure CLI
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
