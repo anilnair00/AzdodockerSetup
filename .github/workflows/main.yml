@@ -1,5 +1,4 @@
 name: Servercore Container Build and Push
-
 on:
   push:
        branches: ['main']
