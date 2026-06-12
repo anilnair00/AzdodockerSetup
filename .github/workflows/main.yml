@@ -51,8 +51,10 @@ jobs:
          
       - name: Build and Push Docker image
         run: |
-         docker build . -t tesreg001.azurecr.io/dotnet/sdk:9.0
-         docker push tesreg001.azurecr.io/dotnet/sdk:9.0
+         # docker build . -t tesreg001.azurecr.io/dotnet/sdk:9.0
+         # docker push tesreg001.azurecr.io/dotnet/sdk:9.0
+         docker build . -t tesreg001.azurecr.io/ant:1.0
+         docker push tesreg001.azurecr.io/ant:1.0
          
       # - name: Build and Push Docker image
       #   run: |
