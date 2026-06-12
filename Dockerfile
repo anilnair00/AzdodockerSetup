@@ -24,7 +24,6 @@ RUN apt-get update && apt-get upgrade -y && \
     ln -s /opt/ant/bin/ant /usr/bin/ant && \
     curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
     rm -f /tmp/apache-ant.tar.gz && \
-    apt-get purge -y curl && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
