@@ -1,11 +1,11 @@
 FROM ubuntu:22.04
 
-ARG ANT_VERSION=1.10.14 
+# ARG ANT_VERSION=1.10.14 
 
-ENV DEBIAN_FRONTEND=noninteractive \
-    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
-    ANT_HOME=/opt/ant \
-    PATH="${PATH}:${ANT_HOME}/bin:${JAVA_HOME}/bin"
+# ENV DEBIAN_FRONTEND=noninteractive \
+#     JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
+#     ANT_HOME=/opt/ant \
+#     PATH="${PATH}:${ANT_HOME}/bin:${JAVA_HOME}/bin"
 
 # Install only required packages (no upgrade for reproducibility)
 RUN apt-get update && apt-get upgrade -y && \
